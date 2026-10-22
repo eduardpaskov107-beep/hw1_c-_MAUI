@@ -1,0 +1,48 @@
+# .NET MAUI build output
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.cache
+*.pidb
+
+# ReSharper / Rider
+_ReSharper*/
+*.resharper
+*.resharper.user
+.idea/
+*.rider.user
+*.rider.modulemap
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Xamarin / MAUI
+*.orig
+*.bak
+*.swp
+*.swm
+*.swn
+*.swo
+*.plist
+
+# NuGet
+*.nupkg
+packages/
+
+# Miscellaneous
+thumbs.db
+*.log
+*.tmp
+
+# Globalization satellite assemblies
+*/bin/*/net*-/
+*/bin/*/Microsoft.Maui.Controls.Compatibility.resources.dll
+*/bin/*/Microsoft.Maui.Controls.resources.dll
+*/bin/*/Microsoft.Maui.Extensions.resources.dll
+*/bin/*/Microsoft.Maui.resources.dll

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp.MainPage"
+             Padding="20"> <!-- Padding у контейнера, как требует задание -->
+
+    <ScrollView>
+        <!-- VerticalStackLayout с заданным Spacing -->
+        <VerticalStackLayout Spacing="15">
+
+            <Label Text="Домашнее задание №1: Анкета" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+
+            <Label Text="Заполните все поля ниже:" FontSize="16" />
+
+            <!-- Пример Grid с явно заданными RowDefinitions и ColumnDefinitions -->
+            <Grid RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Имя:" VerticalOptions="Center" />
+                <Entry x:Name="NameEntry" Grid.Row="0" Grid.Column="1" Placeholder="Введите ваше имя" Keyboard="Text" MaxLength="50" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Email:" VerticalOptions="Center" />
+                <Entry x:Name="EmailEntry" Grid.Row="1" Grid.Column="1" Placeholder="example@mail.com" Keyboard="Email" MaxLength="100" />
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
