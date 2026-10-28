@@ -2,20 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp.MainPage"
-             Padding="20"> <!-- Padding у контейнера, как требует задание -->
+             Padding="20">
 
     <ScrollView>
-        <!-- VerticalStackLayout с заданным Spacing -->
         <VerticalStackLayout Spacing="15">
 
-            <Label Text="Домашнее задание №1: Анкета" 
-                   FontSize="24" 
+            <Label Text="Анкета разработчика" 
+                   FontSize="30" 
                    FontAttributes="Bold" 
-                   HorizontalOptions="Center" />
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,10" />
 
-            <Label Text="Заполните все поля ниже:" FontSize="16" />
-
-            <!-- Пример Grid с явно заданными RowDefinitions и ColumnDefinitions -->
+            
             <Grid RowSpacing="10" ColumnSpacing="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -27,13 +25,74 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Text="Имя:" VerticalOptions="Center" />
-                <Entry x:Name="NameEntry" Grid.Row="0" Grid.Column="1" Placeholder="Введите ваше имя" Keyboard="Text" MaxLength="50" />
+                <Entry x:Name="NameEntry" Grid.Row="0" Grid.Column="1" Placeholder="Иван" 
+                       Keyboard="Text" MaxLength="50" />
 
                 <Label Grid.Row="1" Grid.Column="0" Text="Email:" VerticalOptions="Center" />
-                <Entry x:Name="EmailEntry" Grid.Row="1" Grid.Column="1" Placeholder="example@mail.com" Keyboard="Email" MaxLength="100" />
+                <Entry x:Name="EmailEntry" Grid.Row="1" Grid.Column="1" 
+                       Placeholder="ivan@mail.com" Keyboard="Email" MaxLength="100" />
             </Grid>
+            
+            <Label Text="О себе:" FontAttributes="Bold" />
+            <Editor x:Name="BioEditor" Placeholder="Расскажите о себе" 
+                    AutoSize="TextChanges" MaxLength="200"/>
+            
+            <Label Text="Основной язык:" FontAttributes="Bold" />
+            <Picker x:Name="LanguagePicker" Title="Выберите язык">
+                <Picker.Items>
+                    <x:String>Java</x:String>
+                    <x:String>C#</x:String>
+                    <x:String>Python</x:String>
+                    <x:String>Kotlin</x:String>
+                    <x:String>PHP</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Уровень:" FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="15">
+                <RadioButton Content="Junior" GroupName="Lvl" Value="Junior" x:Name="JuniorRadio"/>
+                <RadioButton Content="Middle" GroupName="Lvl" Value="Middle" x:Name="MiddleRadio"/>
+                <RadioButton Content="Senior" GroupName="Lvl" Value="Senior" x:Name="SeniorRadio"/>
+            </HorizontalStackLayout>
+            
+            <Label Text="Дополнительно:" FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox x:Name="RemoteCheckBox" IsChecked="False" Color="Orange" />
+                <Label Text="Готов к удаленной работе" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="10">
+                <CheckBox x:Name="RelocateCheckBox" IsChecked="False" Color="Orange" />
+                <Label Text="Готов к релокации" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout Spacing="10">
+                <Switch x:Name="NotifySwitch" IsToggled="False" OnColor="Orange" />
+                <Label Text="Получать уведомления" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            
+            <Label Text="Дата рождения:" FontAttributes="Bold" />
+            <DatePicker x:Name="BirthDatePicker" Format="dd.MM.yyyy" 
+                        MinimumDate="1900-01-01" MaximumDate="2008-12-31" Date="2000-06-07" />
+
+            <Label Text="Стаж работы (лет):" FontAttributes="Bold" />
+            <Label Text="{Binding Source={x:Reference ExpSlider}, Path=Value, 
+                    Mode=OneWay, StringFormat='Стаж: {0:F0} лет'}" 
+                   FontSize="16" TextColor="Blue" />
+            <Slider x:Name="ExpSlider" Minimum="0" Maximum="30" Value="0" />
+
+            <Label Text="Аватар:" FontAttributes="Bold" />
+            <Image Source="https://picsum.photos/150" Aspect="AspectFill" HeightRequest="100" 
+                   WidthRequest="100" HorizontalOptions="Start" />
+
+            <Button x:Name="ShowResultBtn" 
+                    Text="Показать результат" 
+                    Clicked="OnShowResultClicked" 
+                    IsEnabled="{Binding Source={x:Reference NameEntry}, Path=Text.Length, Mode=OneWay}" />
+            
+            <Button x:Name="ClearBtn" Text="Очистить" Clicked="OnClearClicked" />
+
+            <Label x:Name="ResultLabel" FontSize="16" TextColor="DarkSlateBlue" Margin="0,10,0,0" />
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
